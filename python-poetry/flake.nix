@@ -9,7 +9,7 @@
     in
     {
       packages = forAllSystems (system: {
-        default = pkgs.${system}.poetry2nix.mkPoetryApplication { projectDir = self; };
+        default = pkgs.${system}.poetry2nix.mkPoetryApplication { projectDir = ./.; };
       });
 
       devShells = forAllSystems (system: {
