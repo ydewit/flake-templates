@@ -18,6 +18,11 @@
         description = "Base python template using poetry";
       };
 
+      python-poetry-app = {
+        path = ./python-poetry-app;
+        description = "Base Python app flake template using poetry"; 
+      };
+
       rust = {
         path = ./rust;
         description = "Base rust template";
