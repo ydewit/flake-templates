@@ -1,5 +1,5 @@
 # Nix builder
-FROM nixos/nix:latest AS builder
+FROM docker.io/nixos/nix:latest AS builder
 
 # Copy our source and setup our working dir.
 COPY . /tmp/build
