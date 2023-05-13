@@ -14,20 +14,30 @@
         # see https://github.com/nix-community/poetry2nix/tree/master#api for more functions and examples.
         inherit (poetry2nix.legacyPackages.${system}) mkPoetryApplication;
         pkgs = nixpkgs.legacyPackages.${system};
+        packageName = throw "put your package name here"; # can we get this from pyproject.toml?
+        myapp = mkPoetryApplication { projectDir = self; };
       in
       {
-        packages = {
-          myapp = mkPoetryApplication { projectDir = self; };
-          default = self.packages.${system}.myapp;
+        packages.default = myapp;
+        packages.${packageName} = myapp;
+        packages."${packageName}Image" = pkgs.dockerTools.buildLayeredImage {
+          name = packageName;
+          tag = "latest";
+          contents = [
+            myapp
+          ];
+          config = {
+            Cmd = [ "${self.packages.${system}.default}/bin/app" ];
+          };
         };
 
         devShells.default = pkgs.mkShell {
           packages = [ poetry2nix.packages.${system}.poetry ];
         };
-
         apps.default = {
           type = "app";
           program = "${self.packages.${system}.default}/bin/app";
         };
+
       });
 }
