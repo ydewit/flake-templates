@@ -25,7 +25,7 @@
 
       jupyter-lab = {
         path = ./jupyter-lab;
-        description = "Base JupyterLab template using venv"
+        description = "Base JupyterLab template using venv";
       };
 
       rust = {
