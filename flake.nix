@@ -23,6 +23,11 @@
         description = "Base Python app flake template using poetry"; 
       };
 
+      jupyter-lab = {
+        path = ./jupyter-lab;
+        description = "Base JupyterLab template using venv"
+      };
+
       rust = {
         path = ./rust;
         description = "Base rust template";
