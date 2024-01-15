@@ -32,6 +32,10 @@
         path = ./rust;
         description = "Base rust template";
       };
+      rustup = {
+        path = ./rustup;
+        description = "Base rustup template";
+      };
     };
     templates.default = self.templates.blank;
   };
